@@ -1,0 +1,15 @@
+com\ecommerce\service\UserServer.class
+com\ecommerce\controller\BaseController.class
+com\ecommerce\error\BusinessException.class
+com\ecommerce\App.class
+com\ecommerce\controller\ViewObject\UserView.class
+com\ecommerce\dao\UserDoMapper.class
+com\ecommerce\error\EmBusinesError.class
+com\ecommerce\service\impl\UserServerImpl.class
+com\ecommerce\dao\PasswordDoMapper.class
+com\ecommerce\dataobject\PasswordDo.class
+com\ecommerce\service\model\UserModel.class
+com\ecommerce\dataobject\UserDo.class
+com\ecommerce\error\CommonError.class
+com\ecommerce\response\CommonReturnType.class
+com\ecommerce\controller\UserController.class
