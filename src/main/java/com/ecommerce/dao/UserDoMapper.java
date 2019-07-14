@@ -9,6 +9,8 @@ public interface UserDoMapper {
 
     int insertSelective(UserDo record);
 
+    UserDo  selectByTelphone(String telphone);
+
     UserDo selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(UserDo record);

@@ -7,7 +7,8 @@ public enum EmBusinesError implements  CommonError {
     UNKNOWN_ERROR(10002,"未知错误"),
 
     //100000开头为用户相关错误定义
-    USER_NOT_EXIST(20001,"用户不存在")
+    USER_NOT_EXIST(20001,"用户不存在"),
+    USER_lOGIN_FAIL(2002,"用户或者密码不正确")
     ;
 
     private  EmBusinesError(int errCode,String errMsg){

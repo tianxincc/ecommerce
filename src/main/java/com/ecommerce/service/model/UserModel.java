@@ -1,14 +1,30 @@
 package com.ecommerce.service.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class UserModel {
     private  int id;
+    @NotBlank(message = "用户名不能为空")
     private  String name;
+
+    @NotNull(message = "性别不能为空")
     private  String gender;
+
+    @NotNull(message = "年龄不能为空")
+    @Min(value = 0,message = "年龄最少不能为0岁")
+    @Max(value = 150,message = "年龄最大不能超过150岁")
     private  String age;
+
+    @NotNull(message = "手机号不能为空")
     private  String telphone;
     private  String registerMode;
     private  String thirdpartyId;
 
+    @NotNull(message = "密码不能为空")
     private  String encrptPassword;
 
     public String getEncrptPassword() {
