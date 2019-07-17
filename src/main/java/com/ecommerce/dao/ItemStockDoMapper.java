@@ -1,6 +1,7 @@
 package com.ecommerce.dao;
 
 import com.ecommerce.dataobject.ItemStockDo;
+import org.apache.ibatis.annotations.Param;
 
 public interface ItemStockDoMapper {
     int deleteByPrimaryKey(Integer id);
@@ -12,7 +13,7 @@ public interface ItemStockDoMapper {
     ItemStockDo selectByPrimaryKey(Integer id);
 
     ItemStockDo selectByItemId(Integer itemId);
-
+    int decreaseStock(@Param("itemId")Integer itemId , @Param("amount")Integer amount);
 
     int updateByPrimaryKeySelective(ItemStockDo record);
 

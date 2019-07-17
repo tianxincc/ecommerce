@@ -12,6 +12,10 @@
   <sql id="Base_Column_List">
     id, title, price, description, sales, img_Url
   </sql>
+  <select id="listItem" resultMap="BaseResultMap">
+    select * from item
+    order by sales desc 
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -103,4 +107,11 @@
       img_Url = #{imgUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="increaseSales" >
+    update item
+    set sales = sales+#{amount}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
 </mapper>

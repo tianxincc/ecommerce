@@ -5,7 +5,6 @@ import com.ecommerce.error.BusinessException;
 import com.ecommerce.response.CommonReturnType;
 import com.ecommerce.service.ItemService;
 import com.ecommerce.service.model.ItemModel;
-import javafx.scene.control.ListCell;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -7,7 +7,6 @@ import com.ecommerce.error.EmBusinesError;
 import com.ecommerce.response.CommonReturnType;
 import com.ecommerce.service.UserServer;
 import com.ecommerce.service.model.UserModel;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +48,7 @@ public class UserController extends BaseController{
         //将用户凭证加入到用户成功的session中
         httpServletRequest.getSession().setAttribute("IS_LOGIN",true);
         httpServletRequest.getSession().setAttribute("LOGIN_USER",userModel);
+
 
         return CommonReturnType.create(null);
 
