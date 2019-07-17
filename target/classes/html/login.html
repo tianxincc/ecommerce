@@ -13,8 +13,8 @@
 	<div class="htmleaf-container">
 		<div id="wrapper" class="login-page">
 		  <div id="login_form" class="form">
-		      <input type="text" placeholder="请输入你的手机号码" id="telphone" name="telphone" value="18271897033"/>
-		      <input type="text" placeholder="请输入你的密码" id="password" name="password" value="123456"/>
+		      <input type="text" placeholder="请输入你的手机号码" id="telphone" name="telphone"/>
+		      <input type="text" placeholder="请输入你的密码" id="password" name="password"/>
 		      <button id="login">登录</button>
 		     	<p class="message">还没有账户? <a href="#" id="register">立刻创建</a></p>
 		  </div>
@@ -52,7 +52,6 @@
 									success:function(data){
 										if(data.status=="success"){
 											alert("登录成功");
-											window.location.href="listItem.html"
 										}else{
 												alert("登录失败,原因为"+data.data.errMsg);
 										}
