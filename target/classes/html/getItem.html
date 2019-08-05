@@ -37,6 +37,10 @@
 		    <div>
 		  	<lable id="sales"></lable>
 		  	</div>
+		  	<lable>点击下单</lable> 
+		    <div>
+		  	<button id="createOrder">下单</button>
+		  	</div>
 		    
 		</div>
 
@@ -88,6 +92,33 @@
 			$("#stock").text(g_itemvo.stock);	
 			$("#sales").text(g_itemvo.sales);	
 		}
+		
+		$("#createOrder").on("click",function(){
+						$.ajax({
+							type:"POST", 
+							contentType:"application/x-www-form-urlencoded",
+							url:"http://localhost:8090/order/createOrder",
+							data:{
+									"itemId":g_itemvo.id,
+									"amount":1,
+									},
+									xhrFields:{withCredentials:true},
+									success:function(data){
+										if(data.status=="success"){
+										alert("下单成功");
+										window.location.reload();
+										}else{
+											alert("下单失败"+data.data.errMsg);
+											if(data.data.errCode=20003){
+												window.location.href="login.html";	
+											}
+										}
+									},
+									error:function(data){
+										alert("下单失败Ϊ"+data.responseText);	
+									}	
+					});
+				});
 		
 	</script>
 </body>

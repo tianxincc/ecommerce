@@ -1,7 +1,10 @@
 com\ecommerce\service\impl\OrderServiceImpl.class
 com\ecommerce\service\UserServer.class
+com\ecommerce\service\PromoService.class
 com\ecommerce\controller\BaseController.class
 com\ecommerce\service\model\OrderModel.class
+com\ecommerce\service\model\PromoModel.class
+com\ecommerce\dao\PromoDoMapper.class
 com\ecommerce\dataobject\SequenceDo.class
 com\ecommerce\dao\OrderDoMapper.class
 com\ecommerce\service\model\ItemModel.class
@@ -20,6 +23,8 @@ com\ecommerce\dataobject\OrderDo.class
 com\ecommerce\controller\ViewObject\ItemView.class
 com\ecommerce\service\ItemService.class
 com\ecommerce\service\impl\UserServerImpl.class
+com\ecommerce\service\impl\PromoServiceImpl.class
+com\ecommerce\dataobject\PromoDo.class
 com\ecommerce\dao\SequenceDoMapper.class
 com\ecommerce\service\OrderService.class
 com\ecommerce\controller\UserController.class
