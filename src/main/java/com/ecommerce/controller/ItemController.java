@@ -5,6 +5,7 @@ import com.ecommerce.error.BusinessException;
 import com.ecommerce.response.CommonReturnType;
 import com.ecommerce.service.ItemService;
 import com.ecommerce.service.model.ItemModel;
+import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,6 +77,15 @@ public class ItemController extends BaseController {
         }
         ItemView itemView=new ItemView();
         BeanUtils.copyProperties(itemModel,itemView);
+        if(itemModel.getPromoModel()!=null){
+            //有正在进行或者即将进行的秒杀活动
+            itemView.setPromoStatus(itemModel.getPromoModel().getStatus());
+            itemView.setPromoId(itemModel.getPromoModel().getId());
+            itemView.setStartDate(itemModel.getPromoModel().getStartDate().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")));
+            itemView.setPromoPrice(itemModel.getPromoModel().getPromoItemPrice());
+        }else {
+            itemView.setPromoStatus(0);
+        }
         return itemView;
     }
 }
