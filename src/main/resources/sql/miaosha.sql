@@ -11,7 +11,7 @@
  Target Server Version : 50703
  File Encoding         : 65001
 
- Date: 15/07/2019 23:26:57
+ Date: 15/08/2019 21:36:44
 */
 
 SET NAMES utf8mb4;
@@ -34,9 +34,9 @@ CREATE TABLE `item`  (
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES (27, '6', 6.00, '6', 100, '6');
-INSERT INTO `item` VALUES (28, 'iphone', 5000.00, '手机', 99, 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4016674015,960487752&fm=27&gp=0.jpg');
-INSERT INTO `item` VALUES (29, '1', 1.00, '1', 88, '1');
+INSERT INTO `item` VALUES (27, 'iphone6', 8000.00, '三代手机', 102, 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4016674015,960487752&fm=27&gp=0.jpg');
+INSERT INTO `item` VALUES (28, 'iphone4', 5000.00, '一代手机', 97, 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4016674015,960487752&fm=27&gp=0.jpg');
+INSERT INTO `item` VALUES (29, 'iphone5', 6000.00, '二代手机', 80, 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4016674015,960487752&fm=27&gp=0.jpg');
 
 -- ----------------------------
 -- Table structure for item_stock
@@ -52,9 +52,76 @@ CREATE TABLE `item_stock`  (
 -- ----------------------------
 -- Records of item_stock
 -- ----------------------------
-INSERT INTO `item_stock` VALUES (24, 6, 27);
-INSERT INTO `item_stock` VALUES (25, 20, 28);
+INSERT INTO `item_stock` VALUES (24, 4, 27);
+INSERT INTO `item_stock` VALUES (25, 6, 28);
 INSERT INTO `item_stock` VALUES (26, 1, 29);
+
+-- ----------------------------
+-- Table structure for order_info
+-- ----------------------------
+DROP TABLE IF EXISTS `order_info`;
+CREATE TABLE `order_info`  (
+  `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL COMMENT 'i',
+  `item_id` int(11) NULL DEFAULT NULL,
+  `item_price` double(10, 2) NULL DEFAULT NULL,
+  `amount` int(255) NULL DEFAULT NULL,
+  `order_price` double(10, 2) NULL DEFAULT NULL,
+  `promo_id` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of order_info
+-- ----------------------------
+INSERT INTO `order_info` VALUES ('2019071700000000', 5, 28, NULL, 1, NULL, 0);
+INSERT INTO `order_info` VALUES ('2019071700000100', 5, 28, NULL, 1, NULL, 0);
+INSERT INTO `order_info` VALUES ('2019071700000200', 5, 28, NULL, 1, NULL, 0);
+INSERT INTO `order_info` VALUES ('2019071700000300', 5, 28, 5000.00, 1, 5000.00, 0);
+INSERT INTO `order_info` VALUES ('2019071700000400', 5, 28, 5000.00, 1, 5000.00, 0);
+INSERT INTO `order_info` VALUES ('2019071700000500', 5, 28, 5000.00, 1, 5000.00, 0);
+INSERT INTO `order_info` VALUES ('2019071700000600', 5, 28, 5000.00, 1, 5000.00, 0);
+INSERT INTO `order_info` VALUES ('2019080500000700', 5, 27, 6.00, 1, 6.00, 0);
+INSERT INTO `order_info` VALUES ('2019080500000800', 5, 27, 6.00, 1, 6.00, 0);
+INSERT INTO `order_info` VALUES ('2019080500000900', 5, 28, 5000.00, 1, 5000.00, 0);
+INSERT INTO `order_info` VALUES ('2019080500001000', 5, 28, 5000.00, 1, 5000.00, 0);
+INSERT INTO `order_info` VALUES ('2019081500001100', 5, 28, 5000.00, 1, 5000.00, 0);
+INSERT INTO `order_info` VALUES ('2019081500001200', 5, 28, 100.00, 1, 5000.00, 1);
+
+-- ----------------------------
+-- Table structure for promo
+-- ----------------------------
+DROP TABLE IF EXISTS `promo`;
+CREATE TABLE `promo`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `promo_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `start_date` datetime(0) NULL DEFAULT NULL,
+  `item_id` int(11) NULL DEFAULT NULL,
+  `promo_item_price` double(10, 2) NULL DEFAULT NULL,
+  `end_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of promo
+-- ----------------------------
+INSERT INTO `promo` VALUES (1, 'iphone4抢购', '2019-08-15 20:28:30', 28, 100.00, '2019-09-06 22:24:50');
+
+-- ----------------------------
+-- Table structure for sequence_info
+-- ----------------------------
+DROP TABLE IF EXISTS `sequence_info`;
+CREATE TABLE `sequence_info`  (
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `current_value` int(255) NULL DEFAULT NULL,
+  `stop` int(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of sequence_info
+-- ----------------------------
+INSERT INTO `sequence_info` VALUES ('order_info', 13, 1);
 
 -- ----------------------------
 -- Table structure for user_info

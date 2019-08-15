@@ -2,12 +2,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>商品详情列表</title>
-
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
 	<div class="htmleaf-container">
 		<div id="wrapper" class="login-page">
+			 
+			 <div>
+		  		<lable style="color:red;" id="promoStartDateContainer">秒杀开始时间；</lable> 
+		  		<lable id="promoStatusDate"></lable>
+		  	</div>
 		  	<lable>商品名称</lable> 
 		  	<div>
 		  		<lable id="title"></lable>
@@ -23,9 +27,15 @@
 		  		<lable id="description"></lable>
 		  	</div>
 		  	
-		  	<lable>商品价格</lable> 
-		  	<div>
+		  	
+		  	<div id="normalPrice">
+		  		<lable>商品价格</lable> 
 		  		<lable id="price"></lable>
+		  	</div>
+		  	
+		  	<div id="promoPriceContainer">
+		  		<lable  style="color:red;">秒杀价格</lable> 
+		  		<lable id="promoPrice"></lable>
 		  	</div>
 		  	
 		  	<lable>商品库存</lable> 
@@ -74,6 +84,7 @@
 										if(data.status=="success"){
 										g_itemvo=data.data;
 										reloadDom();
+										setInterval(reloadDom,1000);
 										}else{
 											alert("获取信息失败"+data.data.errMsg);
 										}
@@ -91,6 +102,29 @@
 			$("#price").text(g_itemvo.price);	
 			$("#stock").text(g_itemvo.stock);	
 			$("#sales").text(g_itemvo.sales);	
+			if(g_itemvo.promoStatus==1){
+				//活动还未开始	
+				var startTime=g_itemvo.startDate.replace(new RegExp("-","gm"),"/");
+				startTime=(new Date(startTime)).getTime();
+				var nowTime=Date.parse(new Date);
+				var dalta=(startTime-nowTime)/1000;
+				if(dalta<=0){
+					//活动开始了
+					g_itemvo.promoStatus	=2;
+					reloadDom();
+				}
+				
+				$("#promoStartDateContainer").text("秒杀活动将于："+g_itemvo.startDate+"开始售卖,倒计时:"+dalta+"秒");
+				$("#promoPrice").text(g_itemvo.promoPrice);
+				$("#createOrder").attr("disabled",true);
+				
+			}else if(g_itemvo.promoStatus==2){
+				$("#promoStartDateContainer").text("秒杀正在进行中");
+				$("#promoPrice").text(g_itemvo.promoPrice);
+				$("#createOrder").attr("disabled",false);
+				$("#normalPrice").hide();
+				
+			}
 		}
 		
 		$("#createOrder").on("click",function(){
@@ -101,6 +135,7 @@
 							data:{
 									"itemId":g_itemvo.id,
 									"amount":1,
+									"promoId":g_itemvo.promoId
 									},
 									xhrFields:{withCredentials:true},
 									success:function(data){

@@ -9,6 +9,8 @@ public class OrderDo {
 
     private Double itemPrice;
 
+    private Integer promoId;
+
     private Integer amount;
 
     private Double orderPrice;
@@ -59,5 +61,13 @@ public class OrderDo {
 
     public void setOrderPrice(Double orderPrice) {
         this.orderPrice = orderPrice;
+    }
+
+    public Integer getPromoId() {
+        return promoId;
+    }
+
+    public void setPromoId(Integer promoId) {
+        this.promoId = promoId;
     }
 }
